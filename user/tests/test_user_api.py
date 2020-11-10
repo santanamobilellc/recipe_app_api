@@ -19,7 +19,7 @@ class PublicUsersApiTests(TestCase):
     def setUp(self) -> None: self.client = APIClient()
 
     def test_create_valid_user_success(self):
-        """Test creating user with valid payload is succesfull"""
+        """Test creating user with valid payload is successful"""
         payload = {
             'email': 'jjc@jjc.com',
             'password': '04032009',
@@ -33,7 +33,7 @@ class PublicUsersApiTests(TestCase):
         self.assertNotIn('password', res.data)
 
     def test_user_exists(self):
-        """Test creating a user that alaready exists fails"""
+        """Test creating a user that already exists fails"""
         payload = {'email': 'jjc@jjc.com', 'password': '04032009'}
         create_user(**payload)
 
@@ -106,7 +106,7 @@ class PrivateUserApiTest(TestCase):
         self.client = APIClient()
         self.client.force_authenticate(user=self.user)
 
-    def test_retrieve_pofile_success(self):
+    def test_retrieve_profile_success(self):
         """Test retrieve profile for user"""
         res = self.client.get(ME_URL)
 
@@ -118,13 +118,13 @@ class PrivateUserApiTest(TestCase):
 
     def test_post_me_not_allowed(self):
         """Test that post is not allowed on the me url"""
-        res = self.client.post(TOKEN_URL, {})
+        res = self.client.post(ME_URL, {})
         self.assertEqual(res.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_update_user_profile(self):
         """Test updating the profile for authenticated user"""
-        payload = {'name': 'new name', 'password': 'newpassword123'}
-        res = self.client.patch(TOKEN_URL, payload)
+        payload = {'name': 'new name', 'password': 'new_password123'}
+        res = self.client.patch(ME_URL, payload)
 
         self.user.refresh_from_db()
         self.assertEqual(self.user.name, payload['name'])

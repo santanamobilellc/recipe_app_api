@@ -28,11 +28,11 @@ class UserSerializer(serializers.ModelSerializer):
 class AuthTokenSerializer(serializers.Serializer):
     """Serializer for the user authentication object"""
 
-    # def update(self, instance, validated_data):
-    #     pass
-    #
-    # def create(self, validated_data):
-    #     pass
+    def update(self, instance, validated_data):
+        pass
+
+    def create(self, validated_data):
+        pass
 
     email = serializers.CharField()
     password = serializers.CharField(
