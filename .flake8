@@ -2,6 +2,7 @@
 exclude =
     .git,
     ./venv/lib,
+    ./venv/bin,
     migrations,
     __pycache__,
     manage.py,

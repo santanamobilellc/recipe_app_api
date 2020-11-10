@@ -19,7 +19,7 @@ class AdminSiteTests(TestCase):
         )
 
     def test_users_listed(self):
-        """Test tjat users are listed on user page"""
+        """Test that user are listed on user page"""
         url = reverse('admin:core_user_changelist')
         res = self.client.get(url)
 
@@ -39,6 +39,3 @@ class AdminSiteTests(TestCase):
         res = self.client.get(url)
 
         self.assertEqual(res.status_code, 200)
-
-
-
